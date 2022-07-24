@@ -1,6 +1,6 @@
 # Boas vindas ao repositório do projeto Backend_XP
 
-Backend_XP é um projeto de uma Api de Backend para um aplicativo de investimentos, desenvolvida utilizando Node.js, Sequelize e Mysql. 
+Backend_XP é um projeto de uma Api de Backend para um aplicativo de investimentos, desenvolvida utilizando Node.js, Sequelize, Mysql2 e Express.
 
 ## Descrição
 
@@ -364,3 +364,7 @@ Essa rota possui dois endpoints de POST /deposito e /saque e um endpoint de GET 
 }
 ```
 **Status HTTP 404**
+
+## Autora
+
+- [@rannuza](https://github.com/Rannuza)
