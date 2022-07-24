@@ -6,6 +6,13 @@ const ativoSchema = (sequelize, DataTypes) => {
     valor: DataTypes.DECIMAL
 }, { timestamps: false,  tableName: 'Ativos' });
 
+  ativoTable.associate = (models) => {
+    ativoTable.hasMany(models.AtivosPorUsuario, {
+      foreignKey: 'codAtivo',
+      as: 'AtivosPorUsuario'
+    })
+  }
+
   return ativoTable;
 }
 

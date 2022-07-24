@@ -10,6 +10,13 @@ const userSchema = (sequelize, DataTypes) => {
     saldo: DataTypes.DECIMAL
 }, { timestamps: false,  tableName: 'Users' });
 
+  userTable.associate = (models) => {
+    userTable.hasMany(models.AtivosPorUsuario, {
+      foreignKey: 'codCliente',
+      as: 'AtivosPorUsuario'
+    })
+  }
+
   return userTable;
 }
 
