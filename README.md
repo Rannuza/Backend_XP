@@ -54,8 +54,14 @@ Essa rota possui dois endpoits do tipo POST /comprar e /vender.
 
 - devolve as seguintes informações:
 
-1. Status HTTP 201;
-2. Dados recebidos na requisição;
+```bash
+{
+  "codCliente": integer,
+  "codAtivo": integer,
+  "qtdeAtivo": integer,
+}
+```
+**Status HTTP 201**
 
 **Foram feitas as seguintes validações:**
 
@@ -109,8 +115,14 @@ Caso falte algum terá o seguinte retorno:
 
 - devolve as seguintes informações:
 
-1. Status HTTP 201;
-2. Dados recebidos na requisição;
+```bash
+{
+  "codCliente": integer,
+  "codAtivo": integer,
+  "qtdeAtivo": integer,
+}
+```
+**Status HTTP 201**
 
 **Foram feitas as seguintes validações:**
 
@@ -171,6 +183,7 @@ As informações de todas as ações que o cliente possui em sua carteira acresc
     }
 ]
 ```
+**Status HTTP 200**
 
 **Foram feitas as seguintes validações:**
 
@@ -179,6 +192,33 @@ As informações de todas as ações que o cliente possui em sua carteira acresc
 ```bash
 {
     "message": "Usuário não localizado"
+}
+```
+**Status HTTP 404**
+
+### GET/ativos/:codAtivo:
+
+**Em caso de operação realizada com sucesso**
+
+- Devolve as informações do ativo localizado:
+
+```bash
+{
+    "codAtivo": 1,
+    "name": "Ativo1",
+    "qtdeAtivo": 101,
+    "valor": "350"
+}
+```
+**Status HTTP 200**
+
+**Foram feitas as seguintes validações:**
+
+- Se o ativo não existir:
+
+```bash
+{
+    "message": "Ativo não localizado"
 }
 ```
 **Status HTTP 404**
