@@ -7,6 +7,11 @@ const getAllClientAssets = async (codCliente) => {
     attributes: ['codCliente', 'codAtivo', 'QtdeAtivo'],
   });
 
+  if (assets.length <= 0) {
+    const err = { status: 400, message: 'Usuário não localizado' };
+    throw err;
+  };
+
   const findValues = await Ativo.findAll({
     attributes: ['codAtivo', 'valor']
   });
@@ -30,6 +35,11 @@ const getAllClientAssets = async (codCliente) => {
 
 const getAssetsById = async (codAtivo) => {
   const asset = await Ativo.findOne({ where: { codAtivo }});
+
+  if (!asset) {
+    const err = { status: 400, message: 'Ativo não localizado' };
+    throw err;
+  }
   return asset;
 };
 
