@@ -222,3 +222,63 @@ As informações de todas as ações que o cliente possui em sua carteira acresc
 }
 ```
 **Status HTTP 404**
+
+## 3. Rota /conta
+
+Essa rota possui dois endpoints de POST /deposito e /saque e um endpoint de GET /:codCliente.
+
+### POST/conta/deposito:
+
+- recebe a seguinte estrutura: 
+
+```bash
+{
+  "codCliente": integer,
+  "valor": decimal,
+}
+```
+**Em caso de operação realizada com sucesso**
+
+- Atualiza o saldo do usuário acrescendo o valor depositado.
+
+- devolve as seguintes informações:
+
+```bash
+{
+    "codCliente": 1,
+    "valor_Depositado": 1,
+    "saldo": "901"
+}
+```
+**Status HTTP 201**
+
+**Foram feitas as seguintes validações:**
+
+- Se o valor for <= 0:
+
+```bash
+{
+    "message": "O valor não atingiu o minímo estipulado"
+}
+```
+**Status HTTP 400**
+
+- Se todos os campos da requisição foram preenchidos:
+
+Caso falte algum terá o seguinte retorno:
+
+```bash
+{
+    "message": "Algum campo obrigatório está faltando"
+}
+```
+**Status HTTP 400**
+
+- Se o usuário não existir:
+
+```bash
+{
+    "message": "Usuário não localizado"
+}
+```
+**Status HTTP 404**
