@@ -144,3 +144,41 @@ Caso falte algum terá o seguinte retorno:
 **Status HTTP 409**
 
 ## 2. Rota /ativos
+
+Essa rota possui dois endpoits do tipo GET /cliente/:codCliente e /:codAtivo.
+
+### GET/ativos/cliente/:codCliente:
+
+**Em caso de operação realizada com sucesso**
+
+- Devolve as seguintes informações do banco de dados:
+
+As informações de todas as ações que o cliente possui em sua carteira acrescidas do valor unitátio de cada ação.
+
+```bash
+[
+    {
+        "codCliente": 1,
+        "codAtivo": 1,
+        "QtdeAtivo": 1,
+        "valor": "350"
+    },
+    {
+        "codCliente": 1,
+        "codAtivo": 2,
+        "QtdeAtivo": 3,
+        "valor": "50"
+    }
+]
+```
+
+**Foram feitas as seguintes validações:**
+
+- Se o usuário não possuir ações ou não existir:
+
+```bash
+{
+    "message": "Usuário não localizado"
+}
+```
+**Status HTTP 404**
