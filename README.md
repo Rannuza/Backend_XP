@@ -65,9 +65,7 @@ Essa rota possui dois endpoits do tipo POST /comprar e /vender.
 
 **Foram feitas as seguintes validações:**
 
-- Se todos os campos da requisição foram preenchidos:
-
-Caso falte algum terá o seguinte retorno:
+- Se algum campo da solicitação não foi preenchido:
 
 ```bash
 {
@@ -126,9 +124,7 @@ Caso falte algum terá o seguinte retorno:
 
 **Foram feitas as seguintes validações:**
 
-- Se todos os campos da requisição foram preenchidos:
-
-Caso falte algum terá o seguinte retorno:
+- Se algum campo da solicitação não foi preenchido:
 
 ```bash
 {
@@ -263,9 +259,7 @@ Essa rota possui dois endpoints de POST /deposito e /saque e um endpoint de GET 
 ```
 **Status HTTP 400**
 
-- Se todos os campos da requisição foram preenchidos:
-
-Caso falte algum terá o seguinte retorno:
+- Se algum campo da solicitação não foi preenchido:
 
 ```bash
 {
@@ -282,3 +276,66 @@ Caso falte algum terá o seguinte retorno:
 }
 ```
 **Status HTTP 404**
+
+### POST/conta/saque:
+
+- recebe a seguinte estrutura: 
+
+```bash
+{
+  "codCliente": integer,
+  "valor": decimal,
+}
+```
+**Em caso de operação realizada com sucesso**
+
+- Atualiza o saldo do usuário subtraindo o valor depositado.
+
+- devolve as seguintes informações:
+
+```bash
+{
+    "codCliente": 1,
+    "valor_Retirado": 2,
+    "saldo": "901"
+}
+```
+**Status HTTP 201**
+
+**Foram feitas as seguintes validações:**
+
+- Se o valor for <= 0:
+
+```bash
+{
+    "message": "O valor não atingiu o minímo estipulado"
+}
+```
+**Status HTTP 400**
+
+- Se algum campo da solicitação não foi preenchido:
+
+```bash
+{
+    "message": "Algum campo obrigatório está faltando"
+}
+```
+**Status HTTP 400**
+
+- Se o usuário não existir:
+
+```bash
+{
+    "message": "Usuário não localizado"
+}
+```
+**Status HTTP 404**
+
+- Se o saldo do usuário for inferior ao valor solicitado de saque:
+
+```bash
+{
+    "message": "Saldo insuficiente para saque"
+}
+```
+**Status HTTP 409**
