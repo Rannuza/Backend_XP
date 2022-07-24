@@ -33,11 +33,11 @@ npm run dev
 
 Essa rota possui dois endpoits do tipo POST /comprar e /vender.
 
-###POST/investimentos/comprar:
+### POST/investimentos/comprar:
 
 - recebe a seguinte estrutura: 
 
-  ```bash
+```bash
 {
   "codCliente": integer,
   "codAtivo": integer,
@@ -63,7 +63,7 @@ Essa rota possui dois endpoits do tipo POST /comprar e /vender.
 
 Caso falte algum terá o seguinte retorno:
 
-  ```bash
+```bash
 {
     "message": "Algum campo obrigatório está faltando"
 }
@@ -72,7 +72,7 @@ Caso falte algum terá o seguinte retorno:
 
 - Se a qtdeAtivo for <= 0 terá o seguinte retorno:
 
-  ```bash
+```bash
 {
     "message": "A quantidade miníma para compra é 1"
 }
@@ -81,7 +81,7 @@ Caso falte algum terá o seguinte retorno:
 
 - Se o valor total da compra for maior do que o usuário possui de saldo:
 
-  ```bash
+```bash
 {
     "message": "Saldo insuficiente para concluir a compra"
 }
