@@ -1,9 +1,9 @@
-const validateDeposit = (req, res, next) => {
+const validateOperation = (req, res, next) => {
   const { codCliente, valor } = req.body;
 
   if (valor <= 0) {
     return res.status(400)
-      .json({ message: 'O valor de depósito não atingiu o valor minímo estipulado' });
+      .json({ message: 'O valor não atingiu o minímo estipulado' });
   }
 
   if (!codCliente || !valor ) {
@@ -14,4 +14,4 @@ const validateDeposit = (req, res, next) => {
   next();
 };
 
-module.exports = validateDeposit;
+module.exports = validateOperation;
