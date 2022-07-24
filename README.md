@@ -29,7 +29,7 @@ npm run dev
 
 ## Estrutura da aplicação
 
-### Rota /investimentos
+## 1. Rota /investimentos
 
 Essa rota possui dois endpoits do tipo POST /comprar e /vender.
 
@@ -74,7 +74,7 @@ Caso falte algum terá o seguinte retorno:
 
 ```bash
 {
-    "message": "A quantidade miníma para compra é 1"
+    "message": "A quantidade miníma é 1"
 }
 ```
 **Status HTTP 400**
@@ -87,3 +87,60 @@ Caso falte algum terá o seguinte retorno:
 }
 ```
 **Status HTTP 409**
+
+### POST/investimentos/vender:
+
+- recebe a seguinte estrutura: 
+
+```bash
+{
+  "codCliente": integer,
+  "codAtivo": integer,
+  "qtdeAtivo": integer,
+}
+```
+**Em caso de operação realizada com sucesso**
+
+- realiza as seguintes alterações no banco de dados:
+
+1. Soma ao saldo do usuário o valor ganho com a venda das ações levando em consideração 2 fatores: o valor unitário da ação e a quantidade de ações vendidas;
+2. Soma a quantidade de Ativos disponíveis para compra na tabela de ativos a quantidade vendida pelo usuário;
+3. Subtrai da tabela de AtivosPorUsuário a quantidade de ações vendida pelo usuário;
+
+- devolve as seguintes informações:
+
+1. Status HTTP 201;
+2. Dados recebidos na requisição;
+
+**Foram feitas as seguintes validações:**
+
+- Se todos os campos da requisição foram preenchidos:
+
+Caso falte algum terá o seguinte retorno:
+
+```bash
+{
+    "message": "Algum campo obrigatório está faltando"
+}
+```
+**Status HTTP 400**
+
+- Se a qtdeAtivo for <= 0 terá o seguinte retorno:
+
+```bash
+{
+    "message": "A quantidade miníma é 1"
+}
+```
+**Status HTTP 400**
+
+- Se a quantidade informada for maior do que a que o usuário possui na carteira:
+
+```bash
+{
+    "message": "Quantidade informada excede a quantidade disponível para venda"
+}
+```
+**Status HTTP 409**
+
+## 2. Rota /ativos
