@@ -1,4 +1,3 @@
-// const { Op } = require("sequelize");
 const { AtivosPorUsuario, Ativo, User } = require('../database/models');
 
 const getAllClientAssets = async (codCliente) => {
@@ -8,7 +7,7 @@ const getAllClientAssets = async (codCliente) => {
   });
 
   if (assets.length <= 0) {
-    const err = { status: 400, message: 'Usuário não localizado' };
+    const err = { status: 404, message: 'Usuário não localizado' };
     throw err;
   };
 
@@ -37,7 +36,7 @@ const getAssetsById = async (codAtivo) => {
   const asset = await Ativo.findOne({ where: { codAtivo }});
 
   if (!asset) {
-    const err = { status: 400, message: 'Ativo não localizado' };
+    const err = { status: 404, message: 'Ativo não localizado' };
     throw err;
   }
   return asset;
