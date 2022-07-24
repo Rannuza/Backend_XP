@@ -7,10 +7,11 @@ const ativoSchema = (sequelize, DataTypes) => {
 }, { timestamps: false,  tableName: 'Ativos' });
 
   ativoTable.associate = (models) => {
+    ativoTable.belongsToMany(models.User, { through: { model: 'AtivosPorUsuario'} });
     ativoTable.hasMany(models.AtivosPorUsuario, {
       foreignKey: 'codAtivo',
-      as: 'AtivosPorUsuario'
-    })
+      as: 'tabelaDeRelacionamento'
+    });
   }
 
   return ativoTable;

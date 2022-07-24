@@ -12,20 +12,17 @@ const ativosPorUsuarioSchema = (sequelize, DataTypes) => {
 }, { timestamps: false,  tableName: 'AtivosPorUsuarios' });
 
   ativosPorUsuarioTable.associate = (models) => {
-    models.User.belongsToMany(models.Ativo, {
-      as: 'Users',
-      through: ativosPorUsuarioTable,
+    models.User.belongsToMany(models.Ativo, { through: ativosPorUsuarioTable });
+    models.Ativo.belongsToMany(models.User, { through: ativosPorUsuarioTable });
+    ativosPorUsuarioTable.belongsTo(models.User,  {
       foreignKey: 'codCliente',
-      otherKey: 'codCliente',
+      as: 'relacionamentos'
     });
-    models.Ativo.belongsToMany(models.User, {
-      as: 'Ativos',
-      through: ativosPorUsuarioTable,
+    ativosPorUsuarioTable.belongsTo(models.Ativo, {
       foreignKey: 'codAtivo',
-      otherKey: 'codAtivo',
-    })
+      as: 'tabelaDeRelacionamentos'
+    });
   }
-
   return ativosPorUsuarioTable;
 }
 

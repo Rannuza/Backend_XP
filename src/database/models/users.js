@@ -11,10 +11,11 @@ const userSchema = (sequelize, DataTypes) => {
 }, { timestamps: false,  tableName: 'Users' });
 
   userTable.associate = (models) => {
-    userTable.hasMany(models.AtivosPorUsuario, {
+    userTable.belongsToMany(models.Ativo, { through: { model: 'AtivosPorUsuario'} });
+    userTable.hasMany(models.AtivosPorUsuario,  {
       foreignKey: 'codCliente',
-      as: 'AtivosPorUsuario'
-    })
+      as: 'relacionamento'
+    });
   }
 
   return userTable;
