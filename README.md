@@ -339,3 +339,28 @@ Essa rota possui dois endpoints de POST /deposito e /saque e um endpoint de GET 
 }
 ```
 **Status HTTP 409**
+
+### GET/conta/:codCliente
+
+**Em caso de operação realizada com sucesso**
+
+- Devolve as seguintes informações do banco de dados: código do cliente e saldo atual.
+
+```bash
+{
+    "codCliente": 1,
+    "saldo": "901"
+}
+```
+**Status HTTP 200**
+
+**Foram feitas as seguintes validações:**
+
+- Se o usuário não existir:
+
+```bash
+{
+    "message": "Usuário não localizado"
+}
+```
+**Status HTTP 404**
