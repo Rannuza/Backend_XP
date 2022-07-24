@@ -22,10 +22,15 @@ const getAllClientAssets = async (codCliente) => {
         };
       }
       return asset;
-    })
+    });
     return asset;
   });
   return result;
 };
 
-module.exports = { getAllClientAssets };
+const getAssetsById = async (codAtivo) => {
+  const asset = await Ativo.findOne({ where: { codAtivo }});
+  return asset;
+};
+
+module.exports = { getAllClientAssets, getAssetsById };

@@ -8,13 +8,13 @@ const ativosService = require('../services/ativosService')
 ativosRoutes.get('/cliente/:codCliente', rescue(async (req, res) => {
   const { codCliente } = req.params;
   const assets = await ativosService.getAllClientAssets(codCliente)
-  res.status(201).json(assets);
+  res.status(200).json(assets);
 }));
 
-// ativosRoutes.post('/vender', validatePurchase, rescue(async (req, res) => {
-
-//   await investimentosService.sellAsset(req.body)
-//   res.status(201).json(req.body);
-// }));
+ativosRoutes.get('/:codAtivo', rescue(async (req, res) => {
+  const { codAtivo } = req.params;
+  const assets = await ativosService.getAssetsById(codAtivo)
+  res.status(200).json(assets);
+}));
 
 module.exports = ativosRoutes;

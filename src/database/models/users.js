@@ -16,8 +16,7 @@ const userSchema = (sequelize, DataTypes) => {
       foreignKey: 'codCliente',
       as: 'relacionamento'
     });
-  }
-
+  };
   return userTable;
 }
 
