@@ -3,7 +3,7 @@ const validatePurchase = (req, res, next) => {
 
   if (qtdeAtivo <= 0) {
     return res.status(400)
-      .json({ message: 'A quantidade miníma para compra é 1' });
+      .json({ message: 'A quantidade miníma é 1' });
   }
 
   if (!codCliente || !codAtivo || !qtdeAtivo ) {
