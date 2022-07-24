@@ -11,10 +11,10 @@ investimentosRoutes.post('/comprar', validatePurchase, rescue(async (req, res) =
   res.status(201).json(req.body);
 }));
 
-// investimentosRoutes.post('/vender', validatePurchase, rescue(async (req, res) => {
+investimentosRoutes.post('/vender', validatePurchase, rescue(async (req, res) => {
 
-//   await investimentosService.sellAsset(req.body)
-//   res.status(201).json(req.body);
-// }));
+  await investimentosService.sellAsset(req.body)
+  res.status(201).json(req.body);
+}));
 
 module.exports = investimentosRoutes;
